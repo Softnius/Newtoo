@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Misc
+*.gitignore
+*.gitattributes
+
+# Qt
+*.qbs
+*.hBOUZf
+*.user
