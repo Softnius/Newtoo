@@ -41,3 +41,4 @@
 *.user
 Newtoo.qbs.user
 Newtoo.qbs
+main.cpp
