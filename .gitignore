@@ -34,3 +34,8 @@
 # Misc
 *.gitignore
 *.gitattributes
+
+# Qt
+*.qbs
+*.hBOUZf
+*.user
