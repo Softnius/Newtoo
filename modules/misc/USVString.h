@@ -220,8 +220,10 @@ namespace Newtoo
         }
         inline USVString& append(const char str[])
         {
-            USVString* s = new USVString(1, true);
-            *s = str;
+            const USVString_NUMERIC len = strlen(str);
+            USVString* s = new USVString(m_length+len, true);
+            strcpy(s->data, this->data);
+            strcpy(s->data + m_length - 1, str);
             return *s;
         }
         inline void prependCharToThis(const char str)
