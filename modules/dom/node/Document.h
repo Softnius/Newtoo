@@ -23,7 +23,6 @@ namespace Newtoo
     class Text;
 
     class HTMLElement;
-    class HTMLHeadElement;
     class HTMLOrSVGScriptElement;
 
     class Document : public Node, public GlobalEventHandlers, public DocumentAndElementEventHandlers
@@ -31,7 +30,7 @@ namespace Newtoo
     public:
         Document();
 
-        DOMImplementation* implementation() const   { return mImplementation; }
+        DOMImplementation implementation()         { return DOMImplementation(); }
 
         Node* cloneNode(bool deep = false);
 
@@ -46,7 +45,7 @@ namespace Newtoo
         DOMString inputEncoding() const /* alias */ { return characterSet(); }
         DOMString contentType() const               { return mContentType; }
 
-        DocumentType& doctype()                     { return *mDoctype; }
+        DocumentType* doctype();
         Element* documentElement();
 
         HTMLCollection getElementsByTagName(DOMString localName);
@@ -55,23 +54,23 @@ namespace Newtoo
 
         Element* getElementById(DOMString aId);
 
-        Element* createElement(DOMString localName/*, ElementCreationOptions options*/);
-        Element* createElementNS(DOMString aNamespace, DOMString qualifiedName/*, ElementCreationOptions options*/);
+        static Element* createElement(DOMString localName/*, ElementCreationOptions options*/);
+        static Element* createElementNS(DOMString aNamespace, DOMString qualifiedName/*, ElementCreationOptions options*/);
 
-        DocumentFragment* createDocumentFragment();
-        Text* createTextNode(DOMString data);
-        Comment* createComment(DOMString data);
-        ProcessingInstruction* createProcessingInstruction(DOMString target/*, DOMString data*/);
+        static DocumentFragment* createDocumentFragment();
+        static Text* createTextNode(DOMString data);
+        static Comment* createComment(DOMString data);
+        static ProcessingInstruction* createProcessingInstruction(DOMString target/*, DOMString data*/);
 
         Node* importNode(Node* node, bool deep = false);
         Node* adoptNode(Node* node); // оно работает не по стандартам
 
-        Attr* createAttribute(DOMString localName);
-        Attr* createAttributeNS(DOMString aNamespace, DOMString qualifiedName);
+        static Attr* createAttribute(DOMString localName);
+        static Attr* createAttributeNS(DOMString aNamespace, DOMString qualifiedName);
 
-        Event* createEvent(DOMString interface);
+        static Event* createEvent(DOMString interface);
 
-        Range* createRange();
+        static Range* createRange();
 
         // NodeFilter.SHOW_ALL = 0xFFFFFFFF
         //NodeIterator createNodeIterator(Node* root, unsigned long whatToShow = 0xFFFFFFFF,
@@ -107,7 +106,7 @@ namespace Newtoo
         void setDir(DOMString aDir);
 
         HTMLElement* body();
-        HTMLHeadElement* head();
+        HTMLElement* head();
 
         HTMLCollection images();
         HTMLCollection embeds();
@@ -158,14 +157,12 @@ namespace Newtoo
 
         Document(Document& reference, bool deep)
             :Node(reference, deep),
-             mImplementation(reference.mImplementation),
              mURL(reference.mURL),
              mDocumentURI(reference.mDocumentURI),
              mOrigin(reference.mOrigin),
              mCompatMode(reference.mCompatMode),
              mCharacterSet(reference.mCharacterSet),
              mContentType(reference.mContentType),
-             mDoctype(),
              mLocation(reference.mLocation),
              mDomain(reference.mDomain),
              mReferrer(reference.mReferrer),
@@ -177,13 +174,9 @@ namespace Newtoo
              mDefaultView(reference.mDefaultView),
              mDesignMode(reference.mDesignMode),
              mStyleSheets(reference.mStyleSheets)
-        {
-            mDoctype = (DocumentType*)reference.mDoctype->cloneNode(false);
-        }
+        {}
 
     protected:
-
-        DOMImplementation* mImplementation;
 
         USVString mURL;
         USVString mDocumentURI;
@@ -191,8 +184,6 @@ namespace Newtoo
         DOMString mCompatMode;
         DOMString mCharacterSet;
         DOMString mContentType;
-
-        DocumentType* mDoctype;
 
         Location mLocation;
         USVString mDomain;

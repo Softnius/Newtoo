@@ -1,6 +1,11 @@
 #include "History.h"
 
-History::History()
+namespace Newtoo
 {
+
+    History::History()
+    {
+
+    }
 
 }

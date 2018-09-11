@@ -17,7 +17,6 @@ namespace Newtoo
         DOMParser();
 
         static Document* parseFromString(DOMString str, DOMString type = "text/html");
-        static void parseHtmlFromStringTo(Node* target, DOMString str);
     };
 
 }

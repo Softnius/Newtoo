@@ -1,11 +1,13 @@
 #include "Document.h"
 #include "DocumentFragment.h"
+#include "DocumentType.h"
 #include "ProcessingInstruction.h"
 #include "Element.h"
 #include "Comment.h"
 #include "Text.h"
 #include "Attr.h"
 #include "../../assembly/ElementBuilder.h"
+#include "../../html/element/HTMLElement.h"
 
 namespace Newtoo
 {
@@ -23,6 +25,20 @@ namespace Newtoo
         return DOMString("#document");
     }
 
+    DocumentType* Document::doctype()
+    {
+        HTMLElement* b = body();
+        if(b != 0)
+        {
+            for(unsigned i = 0; i < b->childNodes().length(); i++)
+            {
+                if(b->childNodes().item(i)->nodeType() == DOCUMENT_TYPE_NODE)
+                    return (DocumentType*)b->childNodes().item(i);
+            }
+        }
+        return 0;
+    }
+
     Element* Document::documentElement()
     {
         return getElementByTagName("html");
@@ -32,9 +48,9 @@ namespace Newtoo
     {
         return (HTMLElement*)getElementByTagName("body");
     }
-    HTMLHeadElement* Document::head()
+    HTMLElement *Document::head()
     {
-        return (HTMLHeadElement*)getElementByTagName("head");
+        return (HTMLElement*)getElementByTagName("head");
     }
     HTMLCollection Document::images()
     {

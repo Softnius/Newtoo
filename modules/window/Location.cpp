@@ -1,6 +1,11 @@
 #include "Location.h"
 
-Location::Location()
+namespace Newtoo
 {
+
+    Location::Location()
+    {
+
+    }
 
 }

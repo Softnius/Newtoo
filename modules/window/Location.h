@@ -1,11 +1,12 @@
-#ifndef LOCATION_H
-#define LOCATION_H
+#pragma once
 
-
-class Location
+namespace Newtoo
 {
-public:
-    Location();
-};
 
-#endif // LOCATION_H
+    class Location
+    {
+    public:
+        Location();
+    };
+
+}

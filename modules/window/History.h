@@ -1,11 +1,12 @@
-#ifndef HISTORY_H
-#define HISTORY_H
+#pragma once
 
-
-class History
+namespace Newtoo
 {
-public:
-    History();
-};
 
-#endif // HISTORY_H
+    class History
+    {
+    public:
+        History();
+    };
+
+}

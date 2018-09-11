@@ -17,6 +17,8 @@ Project {
             "modules/assembly/CSSSelectorParser.h",
             "modules/assembly/ElementBuilder.cpp",
             "modules/assembly/ElementBuilder.h",
+            "modules/assembly/HTMLParser.cpp",
+            "modules/assembly/HTMLParser.h",
             "modules/cssom/CSS.cpp",
             "modules/cssom/CSS.h",
             "modules/cssom/rule/CSSFontFaceRule.cpp",

@@ -1,11 +1,12 @@
-#ifndef CONSOLE_H
-#define CONSOLE_H
+#pragma once
 
-
-class Console
+namespace Newtoo
 {
-public:
-    Console();
-};
 
-#endif // CONSOLE_H
+    class Console
+    {
+    public:
+        Console();
+    };
+
+}

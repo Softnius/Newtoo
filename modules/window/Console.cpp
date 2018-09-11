@@ -1,6 +1,11 @@
 #include "Console.h"
 
-Console::Console()
+namespace Newtoo
 {
+
+    Console::Console()
+    {
+
+    }
 
 }

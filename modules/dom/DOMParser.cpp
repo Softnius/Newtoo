@@ -1,4 +1,5 @@
 #include "DOMParser.h"
+#include "DOMImplementation.h"
 
 namespace Newtoo
 {
@@ -17,11 +18,7 @@ namespace Newtoo
         {
 
         }
-    }
-
-    void DOMParser::parseHtmlFromStringTo(Node* target, DOMString str)
-    {
-
+        return 0;
     }
 
 }
