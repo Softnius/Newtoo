@@ -2,10 +2,10 @@
 
 #include "../DOMString.h"
 
-class Element;
-
 namespace Newtoo
 {
+
+    class Element;
 
     class Attr
     {
@@ -38,8 +38,8 @@ namespace Newtoo
 
         bool specifed()                                { return true; }
 
-        DOMString value() const                        { return mValue; }
-        void setValue(DOMString aValue)                { mValue = aValue; }
+        DOMString value();
+        void setValue(DOMString aValue);
 
         DOMString* valueRaw()                          { return &mValue; }
 
@@ -51,6 +51,8 @@ namespace Newtoo
              mOwnerElement(newOwner),
              mValue(reference.mValue)
         {}
+
+        ~Attr();
 
     protected:
 

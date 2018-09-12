@@ -2,6 +2,7 @@
 
 #include "../../html/element/collection/HTMLCollection.h"
 #include "../../html/DocumentAndElementEventHandlers.h"
+#include "../../cssom/style/CSSStyleDeclaration.h"
 #include "../../cssom/misc/ScrollBehavior.h"
 #include "container/NamedNodeMap.h"
 #include "../reflect/DOMTokenList.h"
@@ -115,7 +116,7 @@ namespace Newtoo
 
         //Из стандарта CSSOM и CSSOM View
 
-        CSSStyleDeclaration& style();
+        CSSStyleDeclaration& style()            { return mStyle; }
 
         std::vector<DOMRect> getClientRects();
         DOMRect getBoundingClientRect();
@@ -145,6 +146,7 @@ namespace Newtoo
              mNamespaceURI(reference.mNamespaceURI),
              mPrefix(reference.mPrefix),
              mLocalName(reference.mLocalName),
+             mStyle(reference.mStyle, 0),
              mAttributes(reference.attributes(), this)
         {}
 
@@ -153,6 +155,8 @@ namespace Newtoo
         DOMString mNamespaceURI;
         DOMString mPrefix;
         DOMString mLocalName;
+
+        CSSStyleDeclaration mStyle;
 
         NamedNodeMap mAttributes;
 
