@@ -82,11 +82,15 @@ namespace Newtoo
         {
             return data[index];
         }
-        inline void operator +=(USVString& str)
+        inline void operator +=(const USVString& str)
         {
             *this = this->append_(str);
         }
         inline void operator +=(const char str[])
+        {
+            *this = this->append_(str);
+        }
+        inline void operator +=(const char str)
         {
             *this = this->append_(str);
         }
@@ -212,6 +216,10 @@ namespace Newtoo
         {
             return this->append(str);
         }
+        inline USVString& append_(const char str)
+        {
+            return this->append(str);
+        }
         inline USVString& append(const USVString& str)
         {
             USVString& ret = this->append(str.data);
@@ -224,6 +232,14 @@ namespace Newtoo
             USVString* s = new USVString(m_length+len, true);
             strcpy(s->data, this->data);
             strcpy(s->data + m_length - 1, str);
+            return *s;
+        }
+        inline USVString& append(const char str)
+        {
+            USVString* s = new USVString(m_length+1, true);
+            strcpy(s->data, this->data);
+            s->data[m_length - 1] = str;
+            s->data[m_length] = '\0';
             return *s;
         }
         inline void prependCharToThis(const char str)

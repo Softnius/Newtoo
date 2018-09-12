@@ -15,6 +15,9 @@ namespace Newtoo
 
         Node* cloneNode(bool deep = false) override;
 
+        DOMString innerHTML() override;
+        void setInnerHTML(DOMString aHTML) override;
+
         DOMString media()                                { return getAttribute("media"); }
         void setMedia(DOMString aMedia)                  { setAttribute("media", aMedia); }
 

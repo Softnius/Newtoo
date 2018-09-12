@@ -9,6 +9,8 @@ namespace Newtoo
     {
     public:
 
+        const unsigned long NoStyleSheet = 0;
+
         LinkStyle();
         LinkStyle(StyleSheet* aRefStyleSheet);
 
