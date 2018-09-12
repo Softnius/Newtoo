@@ -1,6 +1,7 @@
 #include "Element.h"
 #include "Text.h"
 #include "../../assembly/CSSSelectorParser.h"
+#include "../../assembly/HTMLSerializer.h"
 #include "../../assembly/HTMLParser.h"
 
 namespace Newtoo
@@ -217,7 +218,12 @@ namespace Newtoo
 
     DOMString Element::innerHTML()
     {
-        return DOMString("Method 'innerHTML' is not complete yet.");
+        HTMLSerializerNodeSequence sequence;
+
+        for(unsigned i = 0; i < childNodes().length(); i++)
+            sequence.push_back(childNodes().item(i));
+
+        return HTMLSerializer::serializeToString(sequence);
     }
     void Element::setInnerHTML(DOMString aHTML)
     {
@@ -232,7 +238,10 @@ namespace Newtoo
 
     DOMString Element::outerHTML()
     {
-        return DOMString("Method 'outerHTML' is not complete yet.");
+        HTMLSerializerNodeSequence sequence;
+        sequence.push_back(this);
+
+        return HTMLSerializer::serializeToString(sequence);
     }
     void Element::setOuterHTML(DOMString aHTML)
     {
