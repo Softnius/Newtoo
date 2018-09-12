@@ -12,9 +12,9 @@ namespace Newtoo
 #define CLOSE_TAG_CHAR '/'
 #define WHITESPACE_CHAR ' '
 
-    std::vector<Node*> HTMLParser::parseHtmlFromString(DOMString str)
+    HTMLParserOutput HTMLParser::parseHtmlFromString(DOMString str)
     {
-        std::vector<Node*> list;
+        HTMLParserOutput list;
 
         Node* newNode = 0;
         unsigned long level = 0;

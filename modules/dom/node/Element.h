@@ -93,8 +93,8 @@ namespace Newtoo
 
         unsigned long collectionIndex();
 
-        virtual DOMString innerHTML() { return DOMString(""); }  // пока еще сделал
-        virtual void setInnerHTML(DOMString aHTML) { aHTML.clear(); } // пока еще сделал
+        virtual DOMString innerHTML();
+        virtual void setInnerHTML(DOMString aHTML);
 
         DOMString outerHTML();
         void setOuterHTML(DOMString aHTML);

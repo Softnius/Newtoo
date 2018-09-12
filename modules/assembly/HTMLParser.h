@@ -8,11 +8,13 @@
 namespace Newtoo
 {
 
+    typedef std::vector<Node*> HTMLParserOutput;
+
     class HTMLParser
     {
     public:
 
-        static std::vector<Node*> parseHtmlFromString(DOMString str);
+        static HTMLParserOutput parseHtmlFromString(DOMString str);
     };
 
 }

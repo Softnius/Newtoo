@@ -1,6 +1,7 @@
 #include "Element.h"
 #include "Text.h"
 #include "../../assembly/CSSSelectorParser.h"
+#include "../../assembly/HTMLParser.h"
 
 namespace Newtoo
 {
@@ -212,6 +213,41 @@ namespace Newtoo
                 return i;
         }
         return 0;
+    }
+
+    DOMString Element::innerHTML()
+    {
+        return DOMString("Method 'innerHTML' is not complete yet.");
+    }
+    void Element::setInnerHTML(DOMString aHTML)
+    {
+        for(unsigned i = 0; i < childNodes().length(); i++)
+            childNodes().item(i)->remove();
+
+        HTMLParserOutput newChilds = HTMLParser::parseHtmlFromString(aHTML);
+
+        for(unsigned i = 0; i < newChilds.size(); i++)
+            appendChild(newChilds[i]);
+    }
+
+    DOMString Element::outerHTML()
+    {
+        return DOMString("Method 'outerHTML' is not complete yet.");
+    }
+    void Element::setOuterHTML(DOMString aHTML)
+    {
+        unsigned long ind = index();
+        Node* parent = parentNode();
+
+        if(parent == 0)
+            return;
+
+        remove();
+
+        HTMLParserOutput list = HTMLParser::parseHtmlFromString(aHTML);
+
+        for(unsigned i = 0; i < list.size(); i++)
+            parent->insertChild(list[i], ind + i);
     }
 
     Element::ElementKind Element::getElementKind()
