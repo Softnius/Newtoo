@@ -12,14 +12,6 @@ Learn about support to **web tecnologies** at <http:/newtoo.ru/html5-support> (R
 
 Current version: Milestone 1 *(Under development)*
 
-## Remaining before release Milestone 1
-* HTMLParser (assembly)
-* Style computer (cssom)
-* Layout (rendering)
-* CSSOM API (cssom)
-* Painter (rendering)
-* Interactive selection (dom)
-
 # Progress
 ![Progress](http://newtoo.ru/resources/github/progress.png?u=3)  
 See our progress at <http:/newtoo.ru/html5-support> (RU)
