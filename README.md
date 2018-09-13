@@ -10,7 +10,7 @@ Learn about support to **web tecnologies** at <http:/newtoo.ru/html5-support> (R
 [Project's official website (English)](http://newtoo.ru/en-us/ "Newtoo website EN-US") (in maintenance)  
 [Project's official website (Russia)](http://newtoo.ru/ "Newtoo website RU")
 
-Current version: Milestone 1 *(Under development)*
+Current version: Milestone 1 *([Under development](https://github.com/FlightBlaze/Newtoo/blob/master/TODO.md))*
 
 # Progress
 ![Progress](http://newtoo.ru/resources/github/progress.png?u=3)  
