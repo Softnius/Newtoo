@@ -172,22 +172,33 @@ namespace Newtoo
         }
         inline bool startsWith(USVString str)
         {
-            std::string piece = data_.substr(0, str.data_.length());
+            unsigned long len = str.data_.length();
+            if(len > data_.size())
+                return false;
+            std::string piece = data_.substr(0, len);
             return piece == str.data_;
         }
         inline bool startsWith(const char str[])
         {
-            std::string piece = data_.substr(0, strlen(str));
+            unsigned long len = strlen(str);
+            if(len > data_.size())
+                return false;
+            std::string piece = data_.substr(0, len);
             return piece == str;
         }
         inline bool endsWith(USVString str)
         {
+            unsigned long len = str.data_.length();
+            if(len > data_.size())
+                return false;
             std::string piece = data_.substr(data_.length() - str.data_.length(), str.data_.length());
             return piece == str.data_;
         }
         inline bool endsWith(const char str[])
         {
             unsigned long len = strlen(str);
+            if(len > data_.size())
+                return false;
             std::string piece = data_.substr(data_.length() - len, len);
             return piece == str;
         }

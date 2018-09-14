@@ -20,13 +20,16 @@ namespace Newtoo
         }
 
         Attr(DOMString aName, DOMString aValue = "", Element* aOwnerElement = 0, DOMString aPrefix = "")
-            :mName(aName), mPrefix(aPrefix), mOwnerElement(aOwnerElement), mValue(aValue)
-        {}
+            :mName(aName), mPrefix(aPrefix), mOwnerElement(aOwnerElement)
+        {
+            setValue(aValue);
+        }
         Attr(DOMString aNamespace, DOMString aLocalName, DOMString aValue = "", Element* aOwnerElement = 0,
              DOMString aPrefix = "")
-        :mNamespaceURI(aNamespace), mLocalName(aLocalName), mPrefix(aPrefix), mOwnerElement(aOwnerElement),
-          mValue(aValue)
-        {}
+            :mNamespaceURI(aNamespace), mLocalName(aLocalName), mPrefix(aPrefix), mOwnerElement(aOwnerElement)
+        {
+            setValue(aValue);
+        }
 
         DOMString name() const                         { return mName; }
         DOMString namespaceURI() const                 { return mNamespaceURI; }

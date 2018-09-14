@@ -40,6 +40,7 @@ namespace Newtoo
 
         inline void find(unsigned long startAt, const char target, DOMString& str)
         {
+            found = false;
             while(idx < str.size())
             {
                 if(str[idx] == target)
