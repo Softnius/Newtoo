@@ -57,7 +57,7 @@ namespace Newtoo
                 }
                 case Node::ELEMENT_NODE:
                 {
-                    Element* element = (Element*)element;
+                    Element* element = (Element*)targetNode;
 
                     html += TAG_BRACKET_OPEN;
                     /* Название тега */

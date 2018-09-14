@@ -112,7 +112,7 @@ namespace Newtoo
         bool inString = false;
         char quote = 0;
 
-        for(signed long i = text.length(); i != -1; i--)
+        for(signed long i = text.length() - 1; i != -1; i--)
         {
             char c = text[i];
 
