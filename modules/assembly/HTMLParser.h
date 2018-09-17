@@ -15,6 +15,10 @@ namespace Newtoo
     public:
 
         static HTMLParserOutput parseHtmlFromString(DOMString str);
+
+#ifdef n2DEBUG
+        static DOMString tokenInfo(DOMString tag);
+#endif
     };
 
 }

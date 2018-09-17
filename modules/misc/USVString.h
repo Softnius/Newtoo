@@ -38,7 +38,9 @@ namespace Newtoo
         }
         inline void operator +=(const char str)
         {
-            data_ = data_ + std::to_string(str);
+            std::string c;
+            c = c + str;
+            data_ = data_ + c;
         }
         inline void operator =(const USVString str)
         {
@@ -124,7 +126,9 @@ namespace Newtoo
         }
         inline USVString append(const char str)
         {
-            return USVString(data_ + std::to_string(str));
+            std::string c = data_;
+            c = c + str;
+            return USVString(c);
         }
         inline void prependCharToThis(const char str)
         {
