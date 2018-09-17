@@ -26,7 +26,8 @@ namespace Newtoo
             CLOSE_TAG_TOKEN,
             TEXT_TOKEN,
             DOCTYPE_TOKEN,
-            COMMENT_TOKEN
+            COMMENT_TOKEN,
+            MISC_TOKEN
         };
         TokenType type;
 
@@ -86,6 +87,13 @@ namespace Newtoo
         DOMString name;
 
         Doctype() : Token(DOCTYPE_TOKEN)
+        {}
+    };
+    struct MiscToken : public Token
+    {
+        DOMString data;
+
+        MiscToken() : Token(MISC_TOKEN)
         {}
     };
     typedef std::vector<Token*> TokenList;
@@ -281,17 +289,140 @@ namespace Newtoo
                 return (Token*)tk;
                 break;
             }
+            case Token::MISC_TOKEN:
+            {
+                break;
+            }
         }
         return 0;
     }
-    TokenList tokenListFromString(DOMString& str)
+    Token* fromMisc(DOMString str)
+    {
+        MiscToken* misc = new MiscToken();
+        misc->data = str;
+        return (Token*)misc;
+    }
+    TokenList tokenListFromString(DOMString str)
     {
         TokenList ret;
 
+        /*
+            Эта функция делит строку на токены,
+            разбивая строку перед '<' и после '>'.
+            Также разрешает использовать специальные
+            символы внутри тегов <style>, <script> и кавычек
+        */
 
+        DOMString unlockTag;
+        bool locked = false;
+        DOMString left = str;
+        bool inString = false;
+        char quote = 0;
+        unsigned i = 0;
+        while(true)
+        {
+            unsigned long leftsize = left.size();
+            if(i >= leftsize)
+                break;
+
+            char c = left[i];
+
+            if(!locked)
+            {
+                if(c == OPEN_BRACKET_CHAR)
+                {
+                    if(i == 0)
+                    {
+                        if(left.startsWith("<style"))
+                        {
+                            unlockTag = "</style";
+                            locked = true;
+                        }
+                        else if(left.startsWith("<script"))
+                        {
+                            unlockTag = "</script";
+                            locked = true;
+                        }
+                    }
+                    else
+                    {
+                        ret.push_back(from(left.substring(0, i - 1)));
+                        left = left.substring(i, leftsize - i);
+                        i = 0;
+                        continue;
+                    }
+                }
+                else if(c == CLOSE_BRACKET_CHAR and i != 0)
+                {
+                    ret.push_back(from(left.substring(0, i)));
+                    if(i != str.size() - 1)
+                    {
+                        left = left.substring(i + 1, leftsize - i - 1);
+                        i = 0;
+                        continue;
+                    }
+                    else break;
+                }
+            }
+            else
+            {
+                if(!inString)
+                {
+                    if(c == OPEN_BRACKET_CHAR)
+                    {
+                        bool unlock = true;
+                        unsigned unlockTagLength = unlockTag.size();
+                        for(unsigned i1 = 0; i1 < unlockTagLength; i1++)
+                        {
+                            if(left[i + i1] != unlockTag[i1])
+                            {
+                                unlock = false;
+                                break;
+                            }
+                        }
+                        if(unlock)
+                        {
+                            locked = false;
+
+                            /*
+                                ...Lorem impsum</style>_
+                                               ^       ^
+                                               i      next
+                            */
+
+                            unsigned long next = i + unlockTagLength;
+                            if(next < str.size())
+                            {
+                                ret.push_back(fromMisc(left.substring(0, i)));
+                                left = left.substring(i + 1, leftsize - i - 1);
+                                i = 0;
+                                continue;
+                            }
+                        }
+                    }
+                    else if(c == QUOTE_CHAR or c == QUOTE_ALTERNATIVE_CHAR)
+                    {
+                        inString = true;
+                        quote = c;
+                    }
+                } else
+                {
+                    if(c == quote)
+                    {
+                        inString = false;
+                    }
+                }
+            }
+            i++;
+        }
 
         return ret;
     }
+    unsigned long HTMLParser::tokenListSizeFromString(DOMString str)
+    {
+        return tokenListFromString(str).size();
+    }
+
     void clearList(TokenList& list)
     {
         for(unsigned i = 0; i < list.size(); i++)
@@ -302,6 +433,7 @@ namespace Newtoo
     {
         TokenList tokenList = tokenListFromString(str);
         HTMLParserOutput list;
+        Hierarchy hierarchy;
 
 
         return list;

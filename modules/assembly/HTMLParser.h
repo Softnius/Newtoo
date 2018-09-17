@@ -16,8 +16,10 @@ namespace Newtoo
 
         static HTMLParserOutput parseHtmlFromString(DOMString str);
 
+        static unsigned long tokenListSizeFromString(DOMString str); // debug
+
 #ifdef n2DEBUG
-        static DOMString tokenInfo(DOMString tag);
+        static DOMString tokenInfo(DOMString tag); // работает только для тегов
 #endif
     };
 
