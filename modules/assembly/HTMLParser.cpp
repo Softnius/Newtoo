@@ -58,6 +58,8 @@ namespace Newtoo
         DOMString tagname;
         TagType tagType;
 
+        Node* node;
+
         Tag() : Token(TAG_TOKEN)
         {}
     };
@@ -394,6 +396,7 @@ namespace Newtoo
                             if(next < str.size())
                             {
                                 ret.push_back(fromMisc(left.substring(0, i)));
+                                ret.push_back(from(unlockTag.append(">")));
                                 left = left.substring(i + 1, leftsize - i - 1);
                                 i = 0;
                                 continue;
@@ -435,6 +438,25 @@ namespace Newtoo
         HTMLParserOutput list;
         Hierarchy hierarchy;
 
+        for(unsigned i = 0; i < tokenList.size(); i++)
+        {
+            switch(tokenList[i]->type) // завтра доделаю
+            {
+                case Tag::TEXT_TOKEN:
+                {
+                    Text* textToken = (Text*)tokenList[i];
+                    if(!hierarchy.empty())
+                    {
+                        hierarchy.back().node->appendChild
+                                ((Node*)Document::createTextNode(textToken->text));
+                    } else
+                    {
+                        list.push_back((Node*)Document::createTextNode(textToken->text));
+                    }
+                    break;
+                }
+            }
+        }
 
         return list;
     }
