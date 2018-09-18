@@ -11,6 +11,7 @@ namespace Newtoo
 #define EQUALS_CHAR '='
 #define QUOTE_CHAR '\"'
 #define QUOTE_ALTERNATIVE_CHAR '\''
+#define FORCE_SIGLE_TAG_CHAR '/'
 #define CLOSE_TAG_CHAR '/'
 #define WHITESPACE_CHAR ' '
 
@@ -193,6 +194,10 @@ namespace Newtoo
             {
                 Tag* tk = new Tag();
                 DOMString tagContents = str.substring(1, str.size() - 1);
+
+                if(tagContents.endsWithChar(FORCE_SIGLE_TAG_CHAR)) // этот знак уже устарел
+                    tagContents = tagContents.substring(0, str.size() - 1);
+
                 DOMString contents, attrName;
                 bool inString = false;
                 char quote = 0;
