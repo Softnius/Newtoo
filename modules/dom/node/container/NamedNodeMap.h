@@ -30,6 +30,8 @@ namespace Newtoo
         RaisesException<Attr*> removeNamedItem(DOMString name);
         RaisesException<Attr*> removeNamedItemNS(DOMString namespaceURI, DOMString localName);
 
+        void appendItem(Attr* arg);
+
     private:
 
         std::vector<Attr*> mAttrs;

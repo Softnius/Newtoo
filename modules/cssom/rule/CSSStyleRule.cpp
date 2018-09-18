@@ -26,19 +26,22 @@ namespace Newtoo
     }
     void CSSStyleRule::setCssText(DOMString aCssText)
     {
-        char* openBracket = (char*)aCssText.findChar('{');
-
-        if(openBracket == 0)
+        if(!aCssText.has("{"))
             return;
 
-        unsigned long indexOfOpenBracket = openBracket - (char*)&aCssText;
+        unsigned long indexOfOpenBracket = aCssText.indexOf("{");
         // если char равен одному байту
 
-        setSelectorText(aCssText.substring(0, indexOfOpenBracket));
+        DOMString selText = aCssText.substring(0, indexOfOpenBracket);
+        while(selText.endsWith(" "))
+            selText = selText.substring(0, selText.size() - 1);
+
+        setSelectorText(selText);
 
         style().setCssText(aCssText.substring(indexOfOpenBracket + 1,
                           aCssText.size() - indexOfOpenBracket - 1),
                           CSSSelectorParser::computePriorityString(mSelectorText));
+
     }
 
 }

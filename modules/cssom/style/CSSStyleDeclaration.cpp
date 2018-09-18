@@ -73,6 +73,11 @@ namespace Newtoo
             prop.priority = priority;
             prop.id = css.substring(before, splitter.index - before);
 
+            while(prop.id.has("\n"))
+                prop.id = prop.id.erase(prop.id.indexOf("\n"), 1);
+            while(prop.id.has(" "))
+                prop.id = prop.id.erase(prop.id.indexOf(" "), 1);
+
             IndexOfChar seperator;
             seperator.find(splitter.index, CSS_SEPERATOR, css);
 

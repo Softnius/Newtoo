@@ -21,9 +21,16 @@ namespace Newtoo
          mLocalName(qualifiedName)
     {}
 
+#define AFTER_PREFIX ":"
+
     DOMString Element::tagName()
     {
-        DOMString full = mPrefix;
+        DOMString full;
+        if(!mPrefix.empty())
+        {
+            full += mPrefix;
+            full += AFTER_PREFIX;
+        }
         full += mLocalName;
         return full;
     }
@@ -227,11 +234,10 @@ namespace Newtoo
     }
     void Element::setInnerHTML(DOMString aHTML)
     {
-        for(unsigned i = 0; i < childNodes().length(); i++)
-            childNodes().item(i)->remove();
+        while(!childNodes().empty())
+            removeChild(childNodes().item(0));
 
         HTMLParserOutput newChilds = HTMLParser::parseHtmlFromString(aHTML);
-
         for(unsigned i = 0; i < newChilds.size(); i++)
             appendChild(newChilds[i]);
     }

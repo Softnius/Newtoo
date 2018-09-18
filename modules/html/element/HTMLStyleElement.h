@@ -12,6 +12,7 @@ namespace Newtoo
     public:
 
         HTMLStyleElement();
+        HTMLStyleElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
         Node* cloneNode(bool deep = false) override;
 

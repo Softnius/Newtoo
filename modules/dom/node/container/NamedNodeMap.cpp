@@ -102,5 +102,9 @@ namespace Newtoo
         }
         return RaisesException<Attr*>(DOMException(NotFoundError));
     }
+    void NamedNodeMap::appendItem(Attr* arg)
+    {
+        mAttrs.push_back(arg);
+    }
 
 }

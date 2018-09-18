@@ -8,6 +8,10 @@ namespace Newtoo
     HTMLStyleElement::HTMLStyleElement()
     {}
 
+    HTMLStyleElement::HTMLStyleElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix)
+        :HTMLElement(aNamespace, qualifiedName, aPrefix)
+    {}
+
     Node* HTMLStyleElement::cloneNode(bool deep)
     {
         return new HTMLStyleElement(*this, deep);

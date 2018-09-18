@@ -90,6 +90,9 @@ namespace Newtoo
 
     bool CSSSelectorParser::elementMatches(Element* element, DOMString list)
     {
+        while(list.has("\n"))
+            list = list.erase(list.indexOf("\n"), 1);
+
         std::vector<DOMString> selectors = selectorList(list);
 
         for(unsigned s = 0; s < selectors.size(); s++)

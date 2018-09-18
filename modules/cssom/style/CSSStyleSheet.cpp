@@ -22,11 +22,11 @@ namespace Newtoo
 
 #define noInRule deep == 0
 
-#define split(ind) \
+#define split(ind) if(ind + 1 < (int)size) { \
 DOMString next = target->substring(ind + 1, target->size() - ind - 1); \
 *target = target->substring(0, ind); \
 rules.push_back(next); \
-target = &rules.back(); \
+target = &rules.back(); } else { return rules; }
 
     std::vector<DOMString> toRuleList(DOMString text)
     {
@@ -43,10 +43,12 @@ target = &rules.back(); \
 
         while(true)
         {
-            char c = target->item(i);
+            unsigned long size = target->size();
 
-            if(i == (int)target->size())
+            if(i >= (int)size)
                 break;
+
+            char c = target->item(i);
 
             if(!inString)
             {

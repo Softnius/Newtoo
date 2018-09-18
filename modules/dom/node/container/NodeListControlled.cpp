@@ -20,9 +20,7 @@ namespace Newtoo
     Node* NodeListControlled::popAt(unsigned long index)
     {
         Node* ret = mControl.at(index);
-
         mControl.erase(mControl.begin() + index);
-
         return ret;
     }
 

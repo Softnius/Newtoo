@@ -1,4 +1,5 @@
 #include "HTMLParser.h"
+#include "../dom/DOMImplementation.h"
 #include "../dom/node/Document.h"
 #include "../dom/node/Element.h"
 
@@ -58,7 +59,7 @@ namespace Newtoo
         DOMString tagname;
         TagType tagType;
 
-        Node* node;
+        Element* node;
 
         Tag() : Token(TAG_TOKEN)
         {}
@@ -99,29 +100,54 @@ namespace Newtoo
         {}
     };
     typedef std::vector<Token*> TokenList;
-    typedef std::vector<Tag> Hierarchy;
+    typedef std::vector<Tag*> Hierarchy;
 
     Tag::TagType tagTypeByTagName(DOMString tagname)
     {
-        if(tagname == "p")
+        if(!tagname.has(":"))
         {
-            return Tag::OPTIONAL_CLOSE_TAG;
-        }
-        else if(tagname == "br")
+            if(tagname == "p")
+            {
+                return Tag::OPTIONAL_CLOSE_TAG;
+            }
+            else if(tagname == "br")
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname == "hr")
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname == "img")
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname == "input")
+            {
+                return Tag::SINGLE;
+            }
+        } else
         {
-            return Tag::SINGLE;
-        }
-        else if(tagname == "hr")
-        {
-            return Tag::SINGLE;
-        }
-        else if(tagname == "img")
-        {
-            return Tag::SINGLE;
-        }
-        else if(tagname == "input")
-        {
-            return Tag::SINGLE;
+            if(tagname.endsWith(":p"))
+            {
+                return Tag::OPTIONAL_CLOSE_TAG;
+            }
+            else if(tagname.endsWith(":br"))
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname.endsWith(":hr"))
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname.endsWith(":img"))
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname.endsWith(":input"))
+            {
+                return Tag::SINGLE;
+            }
         }
         return Tag::NORMAL;
     }
@@ -166,7 +192,7 @@ namespace Newtoo
             case Token::TAG_TOKEN:
             {
                 Tag* tk = new Tag();
-                DOMString tagContents = str.substring(1, str.size() - 2);
+                DOMString tagContents = str.substring(1, str.size() - 1);
                 DOMString contents, attrName;
                 bool inString = false;
                 char quote = 0;
@@ -262,7 +288,6 @@ namespace Newtoo
                     "</" - 2 символа
                 */
                 tk->tagname = str.substring(2, str.size() - 1);
-
                 return (Token*)tk;
                 break;
             }
@@ -304,6 +329,12 @@ namespace Newtoo
         misc->data = str;
         return (Token*)misc;
     }
+    Token* fromText(DOMString str)
+    {
+        Text* text = new Text();
+        text->text = str;
+        return (Token*)text;
+    }
     TokenList tokenListFromString(DOMString str)
     {
         TokenList ret;
@@ -314,6 +345,12 @@ namespace Newtoo
             Также разрешает использовать специальные
             символы внутри тегов <style>, <script> и кавычек
         */
+
+        if(!str.has("<"))
+        {
+            ret.push_back(fromText(str));
+            return ret;
+        }
 
         DOMString unlockTag;
         bool locked = false;
@@ -338,11 +375,17 @@ namespace Newtoo
                         if(left.startsWith("<style"))
                         {
                             unlockTag = "</style";
+                            unsigned long closeBracket = left.indexOf(">");
+                            ret.push_back(from(left.substring(0, closeBracket)));
+                            left = left.substring(closeBracket + 1, left.size() - closeBracket - 1);
                             locked = true;
                         }
                         else if(left.startsWith("<script"))
                         {
                             unlockTag = "</script";
+                            unsigned long closeBracket = left.indexOf(">");
+                            ret.push_back(from(left.substring(0, closeBracket)));
+                            left = left.substring(closeBracket + 1, left.size() - closeBracket - 1);
                             locked = true;
                         }
                     }
@@ -396,8 +439,7 @@ namespace Newtoo
                             if(next < str.size())
                             {
                                 ret.push_back(fromMisc(left.substring(0, i)));
-                                ret.push_back(from(unlockTag.append(">")));
-                                left = left.substring(i + 1, leftsize - i - 1);
+                                left = left.substring(i, leftsize - i);
                                 i = 0;
                                 continue;
                             }
@@ -440,14 +482,14 @@ namespace Newtoo
 
         for(unsigned i = 0; i < tokenList.size(); i++)
         {
-            switch(tokenList[i]->type) // завтра доделаю
+            switch(tokenList[i]->type)
             {
                 case Tag::TEXT_TOKEN:
                 {
                     Text* textToken = (Text*)tokenList[i];
                     if(!hierarchy.empty())
                     {
-                        hierarchy.back().node->appendChild
+                        hierarchy.back()->node->appendChild
                                 ((Node*)Document::createTextNode(textToken->text));
                     } else
                     {
@@ -455,8 +497,99 @@ namespace Newtoo
                     }
                     break;
                 }
+                case Tag::COMMENT_TOKEN:
+                {
+                    Comment* commentToken = (Comment*)tokenList[i];
+                    if(!hierarchy.empty())
+                    {
+                        hierarchy.back()->node->appendChild
+                                ((Node*)Document::createComment(commentToken->text));
+                    } else
+                    {
+                        list.push_back((Node*)Document::createComment(commentToken->text));
+                    }
+                    break;
+                }
+                case Tag::DOCTYPE_TOKEN:
+                {
+                    Doctype* doctypeToken = (Doctype*)tokenList[i];
+                    if(!hierarchy.empty())
+                    {
+                        hierarchy.back()->node->appendChild
+                               ((Node*)DOMImplementation::createDocumentType(doctypeToken->name, "", ""));
+                    } else
+                    {
+                        list.push_back((Node*)DOMImplementation::createDocumentType
+                                       (doctypeToken->name, "", ""));
+                    }
+                    break;
+                }
+                case Tag::CLOSE_TAG_TOKEN:
+                {
+                    CloseTag* closeTagToken = (CloseTag*)tokenList[i];
+                    if(tagTypeByTagName(closeTagToken->tagname) != Tag::SINGLE)
+                    {
+                        if(!hierarchy.empty())
+                        {
+                            if(hierarchy.back()->tagType == Tag::OPTIONAL_CLOSE_TAG)
+                            {
+                                if(closeTagToken->tagname != hierarchy.back()->tagname)
+                                    hierarchy.pop_back();
+                            }
+                            hierarchy.pop_back();
+                        }
+                    }
+                    break;
+                }
+                case Tag::MISC_TOKEN:
+                {
+                    MiscToken* miscToken = (MiscToken*)tokenList[i];
+                    if(hierarchy.back()->tagname == "style" or hierarchy.back()->tagname == "script")
+                        hierarchy.back()->node->setInnerHTML(miscToken->data);
+                    break;
+                }
+                case Tag::TAG_TOKEN:
+                {
+                    Tag* tagToken = (Tag*)tokenList[i];
+
+                    if(!hierarchy.empty() and tagToken->tagType == Tag::OPTIONAL_CLOSE_TAG)
+                    {
+                        if(hierarchy.back()->tagType == Tag::OPTIONAL_CLOSE_TAG)
+                            hierarchy.pop_back();
+                    }
+
+                    DOMString namespaceURI;
+                    for(unsigned i = 0; i < tagToken->attributes.size(); i++)
+                    {
+                        if(tagToken->attributes[i].name == "xmlns")
+                        {
+                            namespaceURI = tagToken->attributes[i].value;
+                            break;
+                        }
+                    }
+                    Element* e = Document::createElementNS(namespaceURI, tagToken->tagname);
+                    for(unsigned i = 0; i < tagToken->attributes.size(); i++)
+                    {
+                        Attr* attr = Document::createAttribute(tagToken->attributes[i].name);
+                        attr->setValue(tagToken->attributes[i].value);
+                        e->attributes().appendItem(attr);
+                    }
+                    if(!hierarchy.empty())
+                    {
+                        hierarchy.back()->node->appendChild
+                                ((Node*)e);
+                    } else
+                    {
+                        list.push_back((Node*)e);
+                    }
+                    tagToken->node = e;
+                    if(tagToken->tagType != Tag::SINGLE)
+                        hierarchy.push_back(tagToken);
+                    break;
+                }
             }
         }
+        clearList(tokenList);
 
         return list;
     }
