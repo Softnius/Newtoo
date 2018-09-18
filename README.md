@@ -1,4 +1,4 @@
-![Newtoo](http://newtoo.ru/resources/github/banner.png?u=3)  
+![Newtoo](http://newtoo.ru/resources/github/banner.png?u=4)  
 Newtoo is the brand new rendering engine for web browsers. His idea is high perfomance, standard compilance and low memory consumption. It designed to use in web browser Magenta.
   
 Newtoo tries to show a page faster than to load it completely.  
