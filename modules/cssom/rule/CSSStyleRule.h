@@ -13,7 +13,7 @@ namespace Newtoo
         CSSStyleRule(DOMString aCssText, CSSRule* parent = 0);
 
         DOMString selectorText() const                          { return mSelectorText; }
-        void setSelectorText(DOMString aText)                   { mSelectorText = aText; }
+        void setSelectorText(DOMString aText);
         CSSStyleDeclaration& style()                            { return mStyle; }
 
         CSSRule* clone() override;

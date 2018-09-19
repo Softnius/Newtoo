@@ -26,7 +26,7 @@ namespace Newtoo
 DOMString next = target->substring(ind + 1, target->size() - ind - 1); \
 *target = target->substring(0, ind); \
 rules.push_back(next); \
-target = &rules.back(); } else { return rules; }
+target = &rules.back(); i = 0; continue; } else { return rules; }
 
     std::vector<DOMString> toRuleList(DOMString text)
     {

@@ -5,6 +5,8 @@
 namespace Newtoo
 {
 
+#define WHITESPACE_CHAR ' '
+
     CSSStyleRule::CSSStyleRule(DOMString aCssText, CSSRule *parent)
         :CSSRule(STYLE_RULE, parent)
     {
@@ -42,6 +44,13 @@ namespace Newtoo
                           aCssText.size() - indexOfOpenBracket - 1),
                           CSSSelectorParser::computePriorityString(mSelectorText));
 
+    }
+    void CSSStyleRule::setSelectorText(DOMString aText)
+    {
+        while(aText.startsWithChar(WHITESPACE_CHAR))
+            aText = aText.substring(1, aText.size() - 1);
+
+        mSelectorText = aText;
     }
 
 }
