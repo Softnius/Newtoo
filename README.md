@@ -21,3 +21,5 @@ CSS Typed OM <https://www.w3.org/TR/css-typed-om-1> will be avaiable in Mileston
 See our progress at <http:/newtoo.ru/html5-support> (RU)
 
 Has an idea? Write me a ticket [Newtoo/issues](https://github.com/FlightBlaze/Newtoo/issues)
+
+For questions: flightblaze@gmail.com or [vk.com/dmitrykozichev](https://vk.com/dmitrykozichev)
