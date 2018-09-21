@@ -12,8 +12,14 @@ Learn about support to **web tecnologies** at <http:/newtoo.ru/html5-support> (R
 
 Current version: Milestone 1 *([Under development](https://github.com/FlightBlaze/Newtoo/blob/master/TODO.md))*
 
+### Annoncements  
+
+CSS Typed OM <https://www.w3.org/TR/css-typed-om-1> will be avaiable in Milestone 1 with it release
+
 # Progress
 ![Progress](http://newtoo.ru/resources/github/progress.png?u=3)  
 See our progress at <http:/newtoo.ru/html5-support> (RU)
 
 Has an idea? Write me a ticket [Newtoo/issues](https://github.com/FlightBlaze/Newtoo/issues)
+
+For questions: flightblaze@gmail.com or [vk.com/dmitrykozichev](https://vk.com/dmitrykozichev)
