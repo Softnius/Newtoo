@@ -1,4 +1,4 @@
-![Newtoo](http://newtoo.ru/resources/github/banner.png?u=4)  
+![Newtoo](http://newtoo.ru/resources/github/banner.png?u=6)  
 
 # Intelligent & fast web browser engine
 
