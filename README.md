@@ -18,7 +18,7 @@ His goal is to do similar things differently and to be different.
 Learn about support to **web tecnologies** at <http:/newtoo.ru/html5-support> (RU)
 
 # Progress
-![See our progress at <http:/newtoo.ru/html5-support> (RU)](http://newtoo.ru/resources/github/progress.png?u=4)  
+![See our progress at <http:/newtoo.ru/html5-support> (RU)](http://newtoo.ru/resources/github/progress.png?u=5)  
 
 ### Annoncements  
 
