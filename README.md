@@ -13,13 +13,13 @@ His goal is to do similar things differently and to be different.
 
 # HTML5 & CSS Support   
 
+![Features](http://newtoo.ucoz.net/resources/github/features.png)
+
 Learn about support to **web tecnologies** at <http:/newtoo.ru/html5-support> (RU)
 
 # Progress
 ![Progress](http://newtoo.ru/resources/github/progress.png?u=3)  
 See our progress at <http:/newtoo.ru/html5-support> (RU)
-
-Current version: Milestone 1 *([Under development](https://github.com/FlightBlaze/Newtoo/blob/master/TODO.md))*
 
 ### Annoncements  
 
@@ -33,3 +33,5 @@ For questions: flightblaze@gmail.com or [vk.com/dmitrykozichev](https://vk.com/d
 
 [Project's official website (English)](http://newtoo.ru/en-us/ "Newtoo website EN-US") (in maintenance)  
 [Project's official website (Russia)](http://newtoo.ru/ "Newtoo website RU")
+
+Current version: Milestone 1 dev *([Under development](https://github.com/FlightBlaze/Newtoo/blob/master/TODO.md))*
