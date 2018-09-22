@@ -15,14 +15,11 @@ His goal is to do similar things differently and to be different.
 
 Learn about support to **web tecnologies** at <http:/newtoo.ru/html5-support> (RU)
 
-[Project's official website (English)](http://newtoo.ru/en-us/ "Newtoo website EN-US") (in maintenance)  
-[Project's official website (Russia)](http://newtoo.ru/ "Newtoo website RU")
-
-Current version: Milestone 1 *([Under development](https://github.com/FlightBlaze/Newtoo/blob/master/TODO.md))*
-
 # Progress
 ![Progress](http://newtoo.ru/resources/github/progress.png?u=3)  
 See our progress at <http:/newtoo.ru/html5-support> (RU)
+
+Current version: Milestone 1 *([Under development](https://github.com/FlightBlaze/Newtoo/blob/master/TODO.md))*
 
 ### Annoncements  
 
@@ -33,3 +30,6 @@ CSS Typed OM <https://www.w3.org/TR/css-typed-om-1> will be avaiable in Mileston
 Has an idea? Write me a ticket [Newtoo/issues](https://github.com/FlightBlaze/Newtoo/issues)
 
 For questions: flightblaze@gmail.com or [vk.com/dmitrykozichev](https://vk.com/dmitrykozichev)
+
+[Project's official website (English)](http://newtoo.ru/en-us/ "Newtoo website EN-US") (in maintenance)  
+[Project's official website (Russia)](http://newtoo.ru/ "Newtoo website RU")
