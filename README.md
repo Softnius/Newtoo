@@ -31,7 +31,9 @@ Has an idea? Write me a ticket [Newtoo/issues](https://github.com/FlightBlaze/Ne
 
 For questions: flightblaze@gmail.com or [vk.com/dmitrykozichev](https://vk.com/dmitrykozichev)
 
+![--------------------------](http://newtoo.ucoz.net/resources/github/splitter.png)
+  
 [Project's official website (English)](http://newtoo.ru/en-us/ "Newtoo website EN-US") (in maintenance)  
 [Project's official website (Russia)](http://newtoo.ru/ "Newtoo website RU")
 
-Current version: Milestone 1 dev *([Under development](https://github.com/FlightBlaze/Newtoo/blob/master/TODO.md))*
+<sup>Current version:</sup> ![Milestone 1 dev](http://newtoo.ucoz.net/resources/github/version.png) <sup>*([Under development](https://github.com/FlightBlaze/Newtoo/blob/master/TODO.md))*</sup>
