@@ -347,6 +347,31 @@ namespace Newtoo
         {
             std::cout << data_;
         }
+
+#define UNDERSCORE_SPLIT_CHAR '_'
+
+        inline USVString toUnderscore()
+        {
+            std::string c = data_;
+            unsigned i = 0;
+            while(true)
+            {
+                if(i >= c.size())
+                    break;
+
+                if(isupper(c[i]))
+                {
+                    char lower = tolower(c[i]);
+                    std::string next = c.substr(i + 1, c.size() - i - 1);
+                    c = c.substr(0, i);
+                    c = c + UNDERSCORE_SPLIT_CHAR;
+                    c = c + lower;
+                    c = c + next;
+                }
+                i++;
+            }
+            return USVString(c);
+        }
     };
 
 }

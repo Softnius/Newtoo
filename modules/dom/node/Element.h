@@ -141,6 +141,13 @@ namespace Newtoo
         double clientWidth();
         double clientHeight();
 
+        // CSS
+
+        typedef int StyleHistory;
+        typedef int ComputedStylesDeclaration;
+
+        void computeStyles();
+
         Element(Element& reference, bool deep)
             :Node(reference, deep),
              mNamespaceURI(reference.mNamespaceURI),

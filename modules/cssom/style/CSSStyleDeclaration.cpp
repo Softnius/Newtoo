@@ -194,4 +194,13 @@ namespace Newtoo
         return getPropertyValue("float");
     }
 
+    DOMString CSSStyleDeclaration::get(DOMString aProperty)
+    {
+        return getPropertyValue(aProperty.toUnderscore());
+    }
+    void CSSStyleDeclaration::set(DOMString aProperty, DOMString value)
+    {
+        setProperty(aProperty.toUnderscore(), value);
+    }
+
 }

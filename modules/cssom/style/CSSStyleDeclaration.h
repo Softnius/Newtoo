@@ -37,6 +37,10 @@ namespace Newtoo
         CSSRule* parentRule() const                         { return mParentRule; }
         DOMString cssFloat();
 
+        /* эти функции кстати превращают aProperty из CamelCase в snake_case (или underscore) */
+        DOMString get(DOMString aProperty);
+        void set(DOMString aProperty, DOMString value);
+
         CSSStyleDeclaration(CSSStyleDeclaration& reference, CSSRule* newParent)
             :mParentRule(newParent)
         {
