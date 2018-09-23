@@ -13,7 +13,7 @@ His goal is to do similar things differently and to be different.
 
 # HTML5 & CSS Support   
 
-![Features](http://newtoo.ucoz.net/resources/github/features.png)
+![Features](http://newtoo.ucoz.net/resources/github/features.png?u=1)
 
 Learn about support to **web tecnologies** at <http:/newtoo.ru/html5-support> (RU)
 
