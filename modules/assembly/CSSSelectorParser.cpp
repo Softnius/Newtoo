@@ -583,65 +583,106 @@ namespace Newtoo
         return true;
     }
 
-#define TAG_WEIGHT 1
-#define CLASS_WEIGHT 9 // вычитая TAG_WEIGHT
-#define ID_WEIGHT 99 // вычитая TAG_WEIGHT
-
-#define CLASS_WEIGHT_FULL 10
-#define ID_WEIGHT_FULL 100
+    const int typeSelectorPriority = 1;
+    const int classSelectorPriority = 10;
+    const int idSelectorPriority = 100;
 
     unsigned long CSSSelectorParser::computePriority(DOMString text)
     {
         unsigned long ret = 0;
-        bool whitespaceBefore = false;
 
-        if(text[0] == CLASS_CHAR) {}
-        else if(text[0] == ID_CHAR) {}
-        else if(text[0] == WHITESPACE_CHAR) {}
-        else
-        {
-            whitespaceBefore = true;
-            ret = 1;
-        }
+        bool inString = false;
+        bool charsBefore = false;
+        char quote = 0;
 
-        for(unsigned i = 0; i < text.size(); i++)
+        for(signed long i = text.length() - 1; i != -1; i--)
         {
-            if(text[i] == WHITESPACE_CHAR)
+            char c = text[i];
+            if(!inString)
             {
-                if(!whitespaceBefore)
+                if(c == ID_CHAR and charsBefore) // 100 баллов
                 {
-                    whitespaceBefore = true;
-                    ret += TAG_WEIGHT;
+                    charsBefore = false;
+                    ret += idSelectorPriority;
                 }
-                break;
-            }
-            else if(text[i] == ID_CHAR)
-            {
-                if(whitespaceBefore)
+                else if(c == CLASS_CHAR and charsBefore) // 10 баллов
                 {
-                    whitespaceBefore = false;
-                    ret += ID_WEIGHT;
-                } else
-                {
-                    ret += ID_WEIGHT_FULL;
+                    charsBefore = false;
+                    ret += classSelectorPriority;
                 }
-                break;
-            }
-            else if(text[i] == CLASS_CHAR)
-            {
-                if(whitespaceBefore)
+                else if(c == WHITESPACE_CHAR and charsBefore) // 1 балл
                 {
-                    whitespaceBefore = false;
-                    ret += CLASS_WEIGHT;
-                } else
-                {
-                    ret += CLASS_WEIGHT_FULL;
+                    charsBefore = false;
+                    ret += typeSelectorPriority;
                 }
-                break;
-            }
+                else if(c == PSEUDO_CLASS_CHAR and charsBefore) // 10 баллов
+                {
+                    charsBefore = false;
+                    ret += classSelectorPriority;
+                }
+
+                // Универсальные селекторы (0 баллов)
+
+                else if(c == UNIVERSAL_CHAR)
+                {
+                    charsBefore = false;
+                }
+                else if(c == CHILD_COMBINATOR_CHAR)
+                    charsBefore = false;
+
+                else if(c == NEXT_SIBLING_COMBINATOR_CHAR)
+                   charsBefore = false;
+
+                else if(c == SUBSEQUENT_SIBLING_COMBINATOR_CHAR)
+                    charsBefore = false;
+
+                else if(c == COMPARE_EQUALS_CHAR)
+                    charsBefore = false;
+
+                else if(c == COMPARE_STARTS_WITH_MODE_CHAR)
+                    charsBefore = false;
+
+                else if(c == COMPARE_STARTS_WITH_PREFIX_MODE_CHAR)
+                    charsBefore = false;
+
+                else if(c == COMPARE_ENDS_WITH_MODE_CHAR)
+                    charsBefore = false;
+
+                else if(c == COMPARE_CONTAINS_MODE_CHAR)
+                    charsBefore = false;
+
+                else if(c == COMPARE_CONTAINS_ITEM_MODE_CHAR)
+                    charsBefore = false;
+
+                else if(c == COMPARE_CLOSE_CHAR)
+                    charsBefore = false;
+
+                //--------------
+
+                else if(c == COMPARE_OPEN_CHAR and charsBefore) // 10 баллов
+                {
+                    charsBefore = false;
+                    ret += classSelectorPriority;
+                }
+                else if(c == QUOTE_CHAR or c == QUOTE_ALTERNATIVE_CHAR)
+                {
+                    quote = c;
+                    inString = true;
+                }
+                else
+                {
+                    charsBefore = true;
+                    if(i == 0)
+                    {
+                        ret += typeSelectorPriority;
+                        return ret;
+                    }
+                }
+            } // if(inString)
             else
             {
-                whitespaceBefore = false;
+                if(c == quote)
+                    inString = false;
             }
         }
         return ret;
