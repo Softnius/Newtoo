@@ -43,6 +43,10 @@ namespace Newtoo
     {
         return getElementByTagName("html");
     }
+    SVGSVGElement* Document::rootElement()
+    {
+        return (SVGSVGElement*)getElementByTagName("svg");
+    }
 
     HTMLElement* Document::body()
     {

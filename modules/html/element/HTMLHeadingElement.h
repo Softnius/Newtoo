@@ -14,7 +14,9 @@ namespace Newtoo
             H1, H2, H3, H4, H5, H6
         };
 
-        HTMLHeadingElement(Rank aRank);
+        HTMLHeadingElement(Rank aRank = H1);
+        HTMLHeadingElement(DOMString aNamespace, DOMString qualifiedName,DOMString aPrefix = "",
+                           Rank aRank = H1);
 
         Node* cloneNode(bool deep = false) override;
 

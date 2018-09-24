@@ -10,6 +10,7 @@ namespace Newtoo
     public:
 
         HTMLTitleElement();
+        HTMLTitleElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
         Node* cloneNode(bool deep = false) override;
 

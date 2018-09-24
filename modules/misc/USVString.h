@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <string.h>
 #include <stdio.h>
@@ -293,6 +294,12 @@ namespace Newtoo
         inline const char * raw()
         {
             return data_.c_str();
+        }
+        inline USVString toLower_()
+        {
+            std::string ret = data_;
+            std::transform(ret.begin(), ret.end(), ret.begin(), ::tolower);
+            return USVString(ret);
         }
         inline short toShort()
         {

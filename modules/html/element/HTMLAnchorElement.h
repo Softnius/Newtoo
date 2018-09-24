@@ -11,6 +11,7 @@ namespace Newtoo
     public:
 
         HTMLAnchorElement();
+        HTMLAnchorElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
         Node* cloneNode(bool deep = false) override;
 

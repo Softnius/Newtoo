@@ -10,6 +10,7 @@ namespace Newtoo
     public:
 
         HTMLOListElement();
+        HTMLOListElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
         Node* cloneNode(bool deep = false) override;
 

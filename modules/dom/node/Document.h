@@ -24,6 +24,7 @@ namespace Newtoo
 
     class HTMLElement;
     class HTMLOrSVGScriptElement;
+    class SVGSVGElement;
 
     class Document : public Node, public GlobalEventHandlers, public DocumentAndElementEventHandlers
     {
@@ -47,6 +48,7 @@ namespace Newtoo
 
         DocumentType* doctype();
         Element* documentElement();
+        SVGSVGElement* rootElement();
 
         HTMLCollection getElementsByTagName(DOMString localName);
         HTMLCollection getElementsByTagNameNS(DOMString aNamespace, DOMString localName);

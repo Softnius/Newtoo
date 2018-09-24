@@ -12,6 +12,8 @@ namespace Newtoo
     public:
 
         HTMLImageElement(unsigned long aWidth = ULongLengthAuto, unsigned long aHeight = ULongLengthAuto);
+        HTMLImageElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "",
+                    unsigned long aWidth = ULongLengthAuto, unsigned long aHeight = ULongLengthAuto);
 
         Node* cloneNode(bool deep = false) override;
 

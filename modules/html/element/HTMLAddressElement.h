@@ -10,6 +10,7 @@ namespace Newtoo
     public:
 
         HTMLAddressElement();
+        HTMLAddressElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
         Node* cloneNode(bool deep = false) override;
 

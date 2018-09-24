@@ -15,6 +15,7 @@ namespace Newtoo
     public:
 
         static HTMLParserOutput parseHtmlFromString(DOMString str);
+        static HTMLParserOutput parseSvgFromString(DOMString str); // может и не нужно
 
         static unsigned long tokenListSizeFromString(DOMString str); // debug
 

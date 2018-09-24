@@ -10,6 +10,7 @@ namespace Newtoo
     public:
 
         HTMLQuoteElement();
+        HTMLQuoteElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
         Node* cloneNode(bool deep = false) override;
 

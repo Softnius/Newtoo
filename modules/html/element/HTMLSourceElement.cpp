@@ -5,6 +5,9 @@ namespace Newtoo
 
     HTMLSourceElement::HTMLSourceElement()
     {}
+    HTMLSourceElement::HTMLSourceElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix)
+        :HTMLElement(aNamespace, qualifiedName, aPrefix)
+    {}
 
     Node* HTMLSourceElement::cloneNode(bool deep)
     {
