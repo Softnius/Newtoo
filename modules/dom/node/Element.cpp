@@ -300,5 +300,12 @@ namespace Newtoo
     {
         return getAttribute(qualifiedName).toInt();
     }
+    CSSStyleDeclaration* Element::parentStyle()
+    {
+        if(parentElement() == 0)
+            return 0;
+
+        return &parentElement()->style();
+    }
 
 }

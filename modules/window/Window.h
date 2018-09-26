@@ -4,6 +4,7 @@
 #include "../dom/node/Document.h"
 #include "../cssom/media/MediaQueryList.h"
 #include "../cssom/misc/ScrollBehavior.h"
+#include "../style/StyleAssembler.h"
 #include "Location.h"
 #include "Console.h"
 #include "History.h"
@@ -42,6 +43,8 @@ namespace Newtoo
 
         CSSStyleDeclaration* getComputedStyle(Element * element);
         CSSStyleDeclaration* getComputedStyle(Element * element, DOMString pseudoElt);
+
+        StyleAssembler styleAssembly() { return StyleAssembler(); }
 
         MediaQueryList& matchMedia(DOMString query);
         Screen& screen();

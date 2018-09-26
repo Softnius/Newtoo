@@ -148,7 +148,7 @@ namespace Newtoo
         EventHandler& onreadystatechange()          { return mOnreadystatechange; }
         void setOnreadystatechange(EventHandler fn) { mOnreadystatechange = fn; }
 
-        //из стандарта CSSOM и CSSOM View
+        // из стандарта CSSOM и CSSOM View
 
         StyleSheetList& styleSheets()               { return mStyleSheets; }
 
@@ -156,6 +156,11 @@ namespace Newtoo
         std::vector<Element> elementsFromPoint(double x, double y);
         CaretPosition* caretPositionFromPoint(double x, double y);
         Element* scrollingElement();
+
+        // CSS
+
+        void forceRestyle();
+        void restyle() {} // alias
 
         Document(Document& reference, bool deep)
             :Node(reference, deep),

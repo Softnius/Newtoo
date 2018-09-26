@@ -8,6 +8,7 @@
 #include "../reflect/DOMTokenList.h"
 #include "../DOMString.h"
 #include "../geometry/DOMRect.h"
+#include "../../render/RenderStyle.h"
 #include "Node.h"
 
 
@@ -143,10 +144,16 @@ namespace Newtoo
 
         // CSS
 
-        typedef int StyleHistory;
-        typedef int ComputedStylesDeclaration;
+        /* typedef int StyleHistory; */
+
+        virtual CSSStyleDeclaration userAgentStyle() { return CSSStyleDeclaration(); }
+
+        CSSStyleDeclaration* parentStyle();
 
         void computeStyles();
+        void cascadeStyles();
+
+        RenderStyle* computedStyle();
 
         Element(Element& reference, bool deep)
             :Node(reference, deep),

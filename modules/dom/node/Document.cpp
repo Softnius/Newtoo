@@ -147,4 +147,9 @@ namespace Newtoo
         return node->appendChild(node);
     }
 
+    void Document::forceRestyle()
+    {
+        restyle();
+    }
+
 }
