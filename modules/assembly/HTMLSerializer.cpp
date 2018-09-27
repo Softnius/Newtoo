@@ -2,6 +2,7 @@
 #include "../dom/node/DocumentType.h"
 #include "../dom/node/Comment.h"
 #include "../dom/node/Text.h"
+#include "../dom/node/Document.h"
 
 namespace Newtoo
 {
@@ -15,6 +16,8 @@ namespace Newtoo
 #define WHITESPACE " "
 #define VALUE_START "=\""
 #define VALUE_END "\""
+
+#define XML_DOCTYPE "<?xml version=\"1.0\"?>"
 
     DOMString HTMLSerializer::serializeToString(HTMLSerializerNodeSequence sequence)
     {
@@ -90,6 +93,15 @@ namespace Newtoo
                 }
                 case Node::DOCUMENT_NODE:
                 {
+                    Document* doc = (Document*)targetNode;
+
+                    HTMLSerializerNodeSequence docContents;
+                    for(unsigned i = 0; i < doc->childNodes().length(); i++)
+                        docContents.push_back(doc->childNodes().item(i));
+
+                    DOMString retxml = XML_DOCTYPE;
+                    retxml += serializeToString(docContents);
+                    return retxml;
                     break;
                 }
                 case Node::DOCUMENT_FRAGMENT_NODE:
