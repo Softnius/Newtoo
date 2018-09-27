@@ -78,7 +78,7 @@ namespace Newtoo
         void setOncancel(EventHandler fn)                   { mOncancel = fn; }
         void setOncanplay(EventHandler fn)                  { mOncanplay = fn; }
         void setOncanplaythrough(EventHandler fn)           { mOncanplaythrough = fn; }
-        void setOnchange(EventHandler fn)                                 { mOnchange = fn; }
+        void setOnchange(EventHandler fn)                   { mOnchange = fn; }
         void setOnclick(EventHandler fn)                    { mOnclick = fn; }
         void setOnclose(EventHandler fn)                    { mOnclose = fn; }
         void setOncontextmenu(EventHandler fn)              { mOncontextmenu = fn; }

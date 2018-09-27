@@ -127,6 +127,10 @@ namespace Newtoo
             {
                 return Tag::SINGLE;
             }
+            else if(tagname == "link")
+            {
+                return Tag::SINGLE;
+            }
         } else
         {
             if(tagname.endsWith(":p"))
@@ -146,6 +150,10 @@ namespace Newtoo
                 return Tag::SINGLE;
             }
             else if(tagname.endsWith(":input"))
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname == ":link")
             {
                 return Tag::SINGLE;
             }

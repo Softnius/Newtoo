@@ -15,6 +15,8 @@ namespace Newtoo
         HTMLImageElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "",
                     unsigned long aWidth = ULongLengthAuto, unsigned long aHeight = ULongLengthAuto);
 
+        CSSStyleDeclaration userAgentStyle() override;
+
         Node* cloneNode(bool deep = false) override;
 
         DOMString alt()                                     { return getAttribute("alt"); }

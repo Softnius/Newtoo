@@ -12,6 +12,8 @@ namespace Newtoo
         HTMLOListElement();
         HTMLOListElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
+        CSSStyleDeclaration userAgentStyle() override;
+
         Node* cloneNode(bool deep = false) override;
 
         bool reserved()                                 { return getAttributeBool("reserved"); }

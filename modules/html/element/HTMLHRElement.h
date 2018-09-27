@@ -12,6 +12,8 @@ namespace Newtoo
         HTMLHRElement();
         HTMLHRElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
+        CSSStyleDeclaration userAgentStyle() override;
+
         Node* cloneNode(bool deep = false) override;
 
         HTMLHRElement(HTMLHRElement& reference, bool deep)

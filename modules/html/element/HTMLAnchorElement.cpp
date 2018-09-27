@@ -9,6 +9,12 @@ namespace Newtoo
         :HTMLElement(aNamespace, qualifiedName, aPrefix)
     {}
 
+    CSSStyleDeclaration HTMLAnchorElement::userAgentStyle()
+    {
+        CSSStyleDeclaration st;
+        return st;
+    }
+
     Node* HTMLAnchorElement::cloneNode(bool deep)
     {
         return new HTMLAnchorElement(*this, deep);

@@ -12,6 +12,8 @@ namespace Newtoo
         HTMLQuoteElement();
         HTMLQuoteElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
+        CSSStyleDeclaration userAgentStyle() override;
+
         Node* cloneNode(bool deep = false) override;
 
         DOMString cite()                                { return getAttribute("cite"); }

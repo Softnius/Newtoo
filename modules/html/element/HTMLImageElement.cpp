@@ -16,6 +16,15 @@ namespace Newtoo
         setHeight(aHeight);
     }
 
+    CSSStyleDeclaration HTMLImageElement::userAgentStyle()
+    {
+        CSSStyleDeclaration st;
+        st.setProperty("display", "inline-block", UAPropertyPriority);
+        st.setProperty("height", "auto", UAPropertyPriority);
+        st.setProperty("width", "auto", UAPropertyPriority);
+        return st;
+    }
+
     Node* HTMLImageElement::cloneNode(bool deep)
     {
         return new HTMLImageElement(*this, deep);

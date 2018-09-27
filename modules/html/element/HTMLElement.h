@@ -78,22 +78,38 @@ namespace Newtoo
         DOMStringMap mDataset;
     };
 
-    typedef HTMLElement HTMLUnknownElement;
-    typedef HTMLElement HTMLHeadElement;
-    typedef HTMLElement HTMLBodyElement;
-    typedef HTMLElement HTMLArticleElement;
-    typedef HTMLElement HTMLSectionElement;
-    typedef HTMLElement HTMLNavElement;
-    typedef HTMLElement HTMLAsideElement;
-    typedef HTMLElement HTMLHeaderElement;
-    typedef HTMLElement HTMLFooterElement;
-    typedef HTMLElement HTMLParagraphElement;
-    typedef HTMLElement HTMLDListElement;
-    typedef HTMLElement HTMLDDElement;
-    typedef HTMLElement HTMLDTElement;
-    typedef HTMLElement HTMLFigureElement;
-    typedef HTMLElement HTMLFigCaptionElement;
-    typedef HTMLElement HTMLMainElement;
-    typedef HTMLElement HTMLDivElement;
+    class HTMLSemanticElement : public HTMLElement
+    {
+    public:
+
+        HTMLSemanticElement();
+        HTMLSemanticElement(DOMString aNamespace, DOMString qualifiedName,DOMString aPrefix = "");
+
+        CSSStyleDeclaration userAgentStyle() override;
+
+        Node* cloneNode(bool deep = false) override;
+
+        HTMLSemanticElement(HTMLSemanticElement& reference, bool deep)
+            :HTMLElement(reference, deep)
+        {}
+    };
+
+    typedef HTMLSemanticElement HTMLUnknownElement;
+    typedef HTMLSemanticElement HTMLHeadElement;
+    typedef HTMLSemanticElement HTMLBodyElement;
+    typedef HTMLSemanticElement HTMLArticleElement;
+    typedef HTMLSemanticElement HTMLSectionElement;
+    typedef HTMLSemanticElement HTMLNavElement;
+    typedef HTMLSemanticElement HTMLAsideElement;
+    typedef HTMLSemanticElement HTMLHeaderElement;
+    typedef HTMLSemanticElement HTMLFooterElement;
+    typedef HTMLSemanticElement HTMLParagraphElement;
+    typedef HTMLSemanticElement HTMLDListElement;
+    typedef HTMLSemanticElement HTMLDDElement;
+    typedef HTMLSemanticElement HTMLDTElement;
+    typedef HTMLSemanticElement HTMLFigureElement;
+    typedef HTMLSemanticElement HTMLFigCaptionElement;
+    typedef HTMLSemanticElement HTMLMainElement;
+    typedef HTMLSemanticElement HTMLDivElement;
 
 }

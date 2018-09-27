@@ -38,9 +38,13 @@ namespace Newtoo
     }
 
     void Node::setNodeValue(DOMString aPlainText)
-    {}
+    {
+        aPlainText.clear(); // не делать ничего
+    }
     void Node::setTextContent(DOMString aPlainText)
-    {}
+    {
+        aPlainText.clear(); // не делать ничего
+    }
 
     Document* Node::ownerDocument()
     {

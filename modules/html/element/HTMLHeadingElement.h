@@ -18,6 +18,8 @@ namespace Newtoo
         HTMLHeadingElement(DOMString aNamespace, DOMString qualifiedName,DOMString aPrefix = "",
                            Rank aRank = H1);
 
+        CSSStyleDeclaration userAgentStyle() override;
+
         Node* cloneNode(bool deep = false) override;
 
         Rank rank() const                          { return mRank; }

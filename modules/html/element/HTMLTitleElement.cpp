@@ -9,6 +9,13 @@ namespace Newtoo
         :HTMLElement(aNamespace, qualifiedName, aPrefix)
     {}
 
+    CSSStyleDeclaration HTMLTitleElement::userAgentStyle()
+    {
+        CSSStyleDeclaration st;
+        st.setProperty("display", "none", UAPropertyPriority);
+        return st;
+    }
+
     Node* HTMLTitleElement::cloneNode(bool deep)
     {
         return new HTMLTitleElement(*this, deep);

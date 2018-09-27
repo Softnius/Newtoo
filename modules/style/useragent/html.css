@@ -1,0 +1,415 @@
+/*
+    Newtoo - Milestone 1 dev
+    User agent stylesheet
+    (A-Z)
+*/
+
+address {
+        display: block;
+        font-style: italic;
+}
+
+article {
+        display: block;
+}
+
+aside {
+        display: block;
+}
+
+a {
+        display: inline;
+}
+
+b {
+        font-weight: bold;
+}
+
+blockquote {
+        display: block;
+}
+
+body {
+        display: block;
+        margin: 8px;
+}
+
+button {
+        background-color: #f0f0f0;
+        border: 1px solid #707070;
+        display: inline-block;
+        font-family: "Arial";
+        padding: 1px 6px;
+        text-align: center;
+        color: #212121;
+}
+
+canvas {
+        height: 150px;
+        width: 300px;
+}
+
+caption {
+        display: table-row;
+        text-align: center;
+}
+
+code {
+        font-family: "Courier New";
+}
+
+col {
+        display: table-column;
+}
+
+/*
+colgroup {
+        display: table-column-group;
+}
+*/
+
+dd {
+        display: block;
+        margin-left: 40px;
+}
+
+del {
+        text-decoration: line-through;
+}
+
+s {
+        text-decoration: line-through;
+}
+
+dd {
+        display: block;
+        margin-left: 40px;
+}
+
+dfn {
+        font-style: italic;
+}
+
+div {
+        display: block;
+}
+
+dl {
+        display: block;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+dt {
+        display: block;
+}
+
+em {
+        font-style: italic;
+}
+
+embed {
+        height: 16px;
+        width: 16px;
+}
+
+fieldset {
+        border: 2px fieldset;
+        display: block;
+        margin-left: 2px;
+        margin-right: 2px;
+        min-width: auto;
+        padding: 0.5em;
+}
+
+figcaption {
+        display: block;
+}
+
+figure {
+        display: block;
+}
+
+footer {
+        display: block;
+}
+
+form {
+        display: block;
+}
+
+h1 {
+        display: block;
+        font-weight: bold;
+        font-size: 38px;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+h2 {
+        display: block;
+        font-weight: bold;
+        font-size: 32px;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+h3 {
+        display: block;
+        font-weight: bold;
+        font-size: 26px;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+h4 {
+        display: block;
+        font-weight: bold;
+        font-size: 22px;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+h5 {
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+h6 {
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+head {
+        display: none;
+}
+
+header {
+        display: block;
+}
+
+hr {
+        border: 2px solid inherit;
+        box-sizing: border-box;
+        display: block;
+        height: 2px;
+}
+
+html {
+        display: block;
+}
+
+i {
+        font-style: italic;
+}
+
+iframe {
+        overflow: scroll;
+        border: 2px inset;
+        height: 150px;
+        width: 300px;
+}
+
+img {
+        display: inline-block;
+        height: auto;
+        width: auto;
+}
+
+input {
+        background-color: #ffffff;
+        border: 2px solid #707070;
+        color: #212121;
+        display: inline-block;
+        font-family: "Arial";
+        padding-bottom: 1px;
+        padding-top: 1px;
+        white-space: pre;
+}
+
+li {
+        display: list-item;
+}
+
+main {
+        display: block;
+}
+
+menu {
+        display: block;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+        padding-left: 40px;
+}
+
+meta {
+        display: none;
+}
+
+meter {
+        box-sizing: border-box;
+        display: inline-block;
+        height: 0.5em;
+        vertical-align: 0.5em;
+        width: 0.5em;
+}
+
+nav {
+        display: block;
+}
+
+noscript {
+        display: none;
+}
+
+object {
+        height: 16px;
+        width: 16px;
+}
+
+ol {
+        display: block;
+        padding-left: 40px;
+        list-style-type: decimal;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+p {
+        display: block;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+}
+
+pre {
+        display: block;
+        font-family: "Courier New";
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+        white-space: pre;
+}
+
+progress {
+        color: #59B1CC;
+        height: 10px;
+        width: 280px;
+}
+
+s {
+        text-decoration: line-through;
+}
+
+script {
+        display: none;
+}
+
+section {
+        display: block;
+}
+
+select {
+        background-color: #ffffff;
+        border: 1px solid #707070;
+        box-sizing: border-box;
+        color: #212121;
+        display: inline-block;
+        font-family: "Arial";
+        overflow-y: scroll;
+        overflow: hidden;
+}
+
+strong {
+        font-weight: bold;
+}
+
+style {
+        display: none;
+}
+
+sub {
+        font-size: 0.5em;
+        vertical-align: sub;
+}
+
+sup {
+        font-size: 0.5em;
+        vertical-align: super;
+}
+
+table {
+        box-sizing: border-box;
+        display: table;
+}
+
+/*
+tbody {
+        display: table-row-group;
+        vertical-align: middle;
+}
+*/
+
+td {
+        display: table-cell;
+}
+
+textarea {
+        background-color: #ffffff;
+        border: 1px solid #707070;
+        color: #212121;
+        display: inline-block;
+        font-family: "Arial";
+        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
+        white-space: pre-wrap;
+}
+
+/*
+tfoot {
+        display: table-footer-group;
+        vertical-align: middle;
+}
+*/
+
+th {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+}
+
+/*
+thead {
+        display: table-header-group;
+        vertical-align: middle;
+}
+*/
+
+title {
+        display: none;
+}
+
+tr {
+        display: table-row;
+}
+
+u {
+        text-decoration: underline;
+}
+
+ul {
+        display: block;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+        padding-left: 35px;
+}
+
+video {
+        height: 150px;
+        width: 300px;
+}

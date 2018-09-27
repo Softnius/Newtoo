@@ -13,6 +13,8 @@ namespace Newtoo
         HTMLLinkElement();
         HTMLLinkElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
+        CSSStyleDeclaration userAgentStyle() override;
+
         Node* cloneNode(bool deep = false) override;
 
         USVString href()                                    { return getAttribute("href"); }

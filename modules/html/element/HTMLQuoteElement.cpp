@@ -9,6 +9,13 @@ namespace Newtoo
         :HTMLElement(aNamespace, qualifiedName, aPrefix)
     {}
 
+    CSSStyleDeclaration HTMLQuoteElement::userAgentStyle()
+    {
+        CSSStyleDeclaration st;
+        st.setProperty("display", "block", UAPropertyPriority);
+        return st;
+    }
+
     Node* HTMLQuoteElement::cloneNode(bool deep)
     {
         return new HTMLQuoteElement(*this, deep);

@@ -12,6 +12,8 @@ namespace Newtoo
         HTMLPreElement();
         HTMLPreElement(DOMString aNamespace, DOMString qualifiedName, DOMString aPrefix = "");
 
+        CSSStyleDeclaration userAgentStyle() override;
+
         Node* cloneNode(bool deep = false) override;
 
         HTMLPreElement(HTMLPreElement& reference, bool deep)

@@ -42,4 +42,24 @@ namespace Newtoo
         return contentEditable() == "true";
     }
 
+    HTMLSemanticElement::HTMLSemanticElement()
+    {}
+
+    HTMLSemanticElement::HTMLSemanticElement(DOMString aNamespace, DOMString qualifiedName,
+                                             DOMString aPrefix)
+        :HTMLElement(aNamespace, qualifiedName, aPrefix)
+    {}
+
+    CSSStyleDeclaration HTMLSemanticElement::userAgentStyle()
+    {
+        CSSStyleDeclaration st;
+        st.setProperty("display", "block", UAPropertyPriority);
+        return st;
+    }
+
+    Node* HTMLSemanticElement::cloneNode(bool deep)
+    {
+        return new HTMLSemanticElement(*this, deep);
+    }
+
 }

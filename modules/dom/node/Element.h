@@ -146,7 +146,9 @@ namespace Newtoo
 
         /* typedef int StyleHistory; */
 
-        virtual CSSStyleDeclaration userAgentStyle() { return CSSStyleDeclaration(); }
+        const int UAPropertyPriority = 0; // - User agent property priority
+
+        virtual CSSStyleDeclaration userAgentStyle();
 
         CSSStyleDeclaration* parentStyle();
 
