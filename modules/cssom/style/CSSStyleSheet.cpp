@@ -30,6 +30,19 @@ target = &rules.back(); i = 0; continue; } else { return rules; }
 
     std::vector<DOMString> toRuleList(DOMString text)
     {
+        /*
+            Тут был баг. Вылетал, если написать в конце лишние символы.
+            Я его исправил ниже
+        */
+        do
+        {
+            if(text.endsWithChar(CLOSE_RULE_CHAR)
+            or text.endsWithChar(CLOSE_SINGLE_RULE_CHAR))
+                break;
+            text = text.substring(0, text.size() - 2);
+        }
+        while(true);
+
         std::vector<DOMString> rules;
         rules.push_back(text);
 
