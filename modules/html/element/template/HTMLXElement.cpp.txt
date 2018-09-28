@@ -1,0 +1,26 @@
+#include "HTML___Element.h"
+
+namespace Newtoo
+{
+
+    HTML___Element::HTML___Element()
+    {}
+
+    HTML___Element::HTML___Element(DOMString aNamespace, DOMString qualifiedName,
+                                             DOMString aPrefix)
+        :HTMLElement(aNamespace, qualifiedName, aPrefix)
+    {}
+
+    CSSStyleDeclaration HTML___Element::userAgentStyle()
+    {
+        CSSStyleDeclaration st;
+        //st.setProperty("display", "block", UAPropertyPriority);
+        return st;
+    }
+
+    Node* HTML___Element::cloneNode(bool deep)
+    {
+        return new HTML___Element(*this, deep);
+    }
+
+}

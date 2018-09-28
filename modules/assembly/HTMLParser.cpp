@@ -127,7 +127,15 @@ namespace Newtoo
             {
                 return Tag::SINGLE;
             }
+            else if(tagname == "meta")
+            {
+                return Tag::SINGLE;
+            }
             else if(tagname == "link")
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname == "base")
             {
                 return Tag::SINGLE;
             }
@@ -153,7 +161,15 @@ namespace Newtoo
             {
                 return Tag::SINGLE;
             }
-            else if(tagname == ":link")
+            else if(tagname.endsWith(":meta"))
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname.endsWith(":link"))
+            {
+                return Tag::SINGLE;
+            }
+            else if(tagname.endsWith(":base"))
             {
                 return Tag::SINGLE;
             }

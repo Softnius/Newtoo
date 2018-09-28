@@ -28,11 +28,25 @@ namespace Newtoo
 
         virtual CSSRule* clone();
 
-        virtual DOMString cssText()                             { return DOMString(""); }
-        virtual void setCssText(DOMString aCssText)             { aCssText.clear(); }
+        virtual DOMString cssText();
+        virtual void setCssText(DOMString aCssText);
 
         CSSRule* parentRule() const                             { return mParentRule; }
         CSSStyleSheet* parentStyleSheet();
+
+
+        struct CommentCheckOutput {
+            DOMString processed;
+            bool hasComments;
+        };
+
+        CommentCheckOutput checkForComments(DOMString str); // вырезает комментарии даже из скобок
+
+        DOMString comment() const                               { return mComment; }
+        DOMString cssComment();
+        void setComment(DOMString aComment)                     { mComment = aComment; }
+        bool hasComment();
+
 
         CSSRule(CSSRule& reference)
             :mType(reference.mType),
@@ -43,6 +57,8 @@ namespace Newtoo
 
         RuleType mType;
         CSSRule* mParentRule;
+
+        DOMString mComment;
     };
 
 }

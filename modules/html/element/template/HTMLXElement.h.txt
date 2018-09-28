@@ -1,0 +1,24 @@
+#pragma once
+
+#include "HTMLElement.h"
+
+namespace Newtoo
+{
+
+    class HTML___Element : public HTMLElement
+    {
+    public:
+
+        HTML___Element();
+        HTML___Element(DOMString aNamespace, DOMString qualifiedName,DOMString aPrefix = "");
+
+        CSSStyleDeclaration userAgentStyle() override;
+
+        Node* cloneNode(bool deep = false) override;
+
+        HTML___Element(HTML___Element& reference, bool deep)
+            :HTMLElement(reference, deep)
+        {}
+    };
+
+}

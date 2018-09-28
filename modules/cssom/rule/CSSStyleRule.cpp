@@ -20,7 +20,8 @@ namespace Newtoo
 
     DOMString CSSStyleRule::cssText()
     {
-        DOMString ret = mSelectorText;
+        DOMString ret = cssComment();
+        ret += mSelectorText;
         ret += " { ";
         ret = ret.append_(style().cssText());
         ret += " } ";
@@ -28,6 +29,12 @@ namespace Newtoo
     }
     void CSSStyleRule::setCssText(DOMString aCssText)
     {
+        CommentCheckOutput commentCheck = checkForComments(aCssText);
+        if(commentCheck.hasComments)
+        {
+            aCssText = commentCheck.processed;
+        }
+
         if(!aCssText.has("{"))
             return;
 

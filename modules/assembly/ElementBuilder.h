@@ -42,6 +42,7 @@ namespace Newtoo
     const char HTMLDivElementTagName[] = "div";
     const char HTMLParagraphElementTagName[] = "p";
     const char HTMLStyleElementTagName[] = "style";
+    const char HTMLIFrameElementTagName[] = "iframe";
 
     class ElementBuilder
     {

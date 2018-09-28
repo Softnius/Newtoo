@@ -111,5 +111,6 @@ namespace Newtoo
     typedef HTMLSemanticElement HTMLFigCaptionElement;
     typedef HTMLSemanticElement HTMLMainElement;
     typedef HTMLSemanticElement HTMLDivElement;
+    typedef HTMLSemanticElement HTMLMetaElement;
 
 }

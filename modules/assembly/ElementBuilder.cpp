@@ -15,6 +15,7 @@
 #include "../html/element/HTMLStyleElement.h"
 #include "../html/element/HTMLTitleElement.h"
 #include "../html/element/HTMLUListElement.h"
+#include "../html/element/HTMLIFrameElement.h"
 
 namespace Newtoo
 {
@@ -207,6 +208,11 @@ namespace Newtoo
         else if(tagname.name == HTMLStyleElementTagName)
         {
             return new HTMLStyleElement(namespaceURI, tagname.name, tagname.prefix);
+        }
+
+        else if(tagname.name == HTMLIFrameElementTagName)
+        {
+            return new HTMLIFrameElement(namespaceURI, tagname.name, tagname.prefix);
         }
 
         return new HTMLUnknownElement(namespaceURI, tagname.name, tagname.prefix);

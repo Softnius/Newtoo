@@ -147,7 +147,13 @@ namespace Newtoo
         }
         inline USVString erase(const unsigned long index, const unsigned long length)
         {
-            return USVString(data_.erase(index, length));
+            std::string ret = data_;
+            ret.erase(index, length);
+            return USVString(ret);
+        }
+        inline void eraseThis(const unsigned long index, const unsigned long length)
+        {
+            data_.erase(index, length);
         }
         inline USVString replace(USVString str1, USVString str2)
         {
