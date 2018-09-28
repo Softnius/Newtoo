@@ -31,7 +31,9 @@ target = &rules.back(); i = 0; continue; } else { return rules; }
     std::vector<DOMString> toRuleList(DOMString text)
     {
         /*
-            Тут был баг. Вылетал, если написать в конце лишние символы.
+            Тут был баг. Если написать после последнего правила лишние
+            символы, Newtoo создаст лишний CSSStyleRule с неверными
+            входными данными (нету кавычек) и вылетит.
             Я его исправил ниже
         */
         do
