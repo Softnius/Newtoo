@@ -6,6 +6,7 @@
 #include "Comment.h"
 #include "Text.h"
 #include "Attr.h"
+#include "../../assembly/HTMLParser.h"
 #include "../../assembly/ElementBuilder.h"
 #include "../../html/element/HTMLElement.h"
 
@@ -145,6 +146,37 @@ namespace Newtoo
     Node* Document::adoptNode(Node* node)
     {
         return node->appendChild(node);
+    }
+
+    const char NewLineHTMLPrefix[] = "<br>";
+
+    void Document::write(DOMString text)
+    {
+        HTMLParserOutput output = HTMLParser::parseHtmlFromString(text);
+        HTMLElement* b = body();
+        if(b != 0)
+        {
+            HTMLElement* html = (HTMLElement*)getElementByTagName("html");
+            if(html != 0)
+            {
+                for(unsigned i = 0; i < output.size(); i++)
+                    html->appendChild(output[i]);
+            } else
+            {
+                for(unsigned i = 0; i < output.size(); i++)
+                    appendChild(output[i]);
+            }
+        } else
+        {
+            for(unsigned i = 0; i < output.size(); i++)
+                b->appendChild(output[i]);
+        }
+    }
+    void Document::writeln(DOMString text)
+    {
+        DOMString html = NewLineHTMLPrefix;
+        html += text;
+        write(html);
     }
 
     void Document::forceRestyle()
